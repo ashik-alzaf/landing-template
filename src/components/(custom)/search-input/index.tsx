@@ -2,51 +2,47 @@
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { startTransition, useEffect, useState } from "react";
-
+import React, { useEffect, useState, useTransition } from "react";
 const RealTimeSearchInput = () => {
   const searchParams = useSearchParams();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const initialQuery = searchParams.get("q") || "";
-  const [search, setSearch] = useState<string>(initialQuery);
   const pathname = usePathname();
   const router = useRouter();
-  useEffect(() => {
-    if (search !== initialQuery) {
-      setIsLoading(true);
-    }
-    const daleyDebounce = setTimeout(() => {
-      const params = new URLSearchParams();
+  const [search, setSearch] = useState<string>(
+    searchParams.get("search") || ""
+  );
+  const [isPending, startTransition] = useTransition();
 
-      if (search?.trim()) {
-        const cleanedSearch = search.trim().replace(/\s+/g, "%");
-        params.set("q", cleanedSearch);
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (search.trim()) {
+        params.set("search", search.trim());
       } else {
-        params.delete("q");
+        params.delete("search");
       }
 
-      const queryString = params.toString();
-      const url = queryString ? `${pathname}?${queryString}` : pathname;
+      const url = `${pathname}?${params.toString()}`;
+
       startTransition(() => {
         router.push(url);
-        setIsLoading(false);
       });
     }, 500);
 
-    return () => clearTimeout(daleyDebounce);
-  }, [search, router, pathname]);
+    return () => clearTimeout(delayDebounce);
+  }, [search, pathname, router]);
 
   return (
     <div className="w-1/6 mx-auto">
       <div className="relative">
-        {isLoading && (
+        {isPending && (
           <LoaderCircle className="animate-spin absolute size-3.5 left-2 top-3 text-teal-500" />
         )}
         <Input
           className="pl-6"
           value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          placeholder="search"
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search"
         />
       </div>
     </div>

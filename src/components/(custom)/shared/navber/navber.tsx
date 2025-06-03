@@ -35,7 +35,6 @@ const Navber = () => {
     },
   ];
   const [isSticky, setIsSticky] = useState<number>(0);
-  console.log(isSticky);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const onScroll = () => {
     if (scrollRef.current) {
@@ -51,9 +50,9 @@ const Navber = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  // const scrollUp = () => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // };
+  const scrollUp = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <div>
       {!isRegistration && (

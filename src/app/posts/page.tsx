@@ -1,8 +1,9 @@
 "use server";
 import Button from "@/components/(custom)/Button";
-import SearchInput from "@/components/(custom)/dummy-data.search-input";
 import { PaginationDemo } from "@/components/(custom)/paginate";
+import RealTimeSearchInput from "@/components/(custom)/search-input";
 import { fetcher } from "@/lib/action/fetcher";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -13,12 +14,12 @@ const page = async ({ searchParams }: any) => {
   const skip = (page - 1) * limit;
 
   const data: any = await fetcher(
-    `https://dummyjson.com/posts/search?q=${search}&limit=${limit}&skip=${skip}`
+    `${process.env.NEXT_PUBLIC_API_URL}/posts/search?q=${search}&limit=${limit}&skip=${skip}`
   );
 
   return (
     <div className="mt-5">
-      <SearchInput />
+      <RealTimeSearchInput />
       {data?.posts?.length > 0 ? (
         <div className="grid grid-cols-5 gap-6 mt-10 mx-5">
           {data?.posts?.map((post: any, postId: number) => (
@@ -42,7 +43,9 @@ const page = async ({ searchParams }: any) => {
           ))}
         </div>
       ) : (
-        <p>no available</p>
+        <div className="flex h-screen justify-center items-center">
+          <Image src={"/images/error.jpg"} alt="" width={300} height={300} />
+        </div>
       )}
       <div className="my-10">
         <PaginationDemo

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { startTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
@@ -56,7 +55,6 @@ export function PaginationDemo({ totalPages, meta }: PaginationDemoProps) {
           {/* Previous */}
           <PaginationItem>
             <PaginationPrevious
-              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 if (currentPage > 1) handlePageChange(currentPage - 1);
@@ -70,7 +68,6 @@ export function PaginationDemo({ totalPages, meta }: PaginationDemoProps) {
             return (
               <PaginationItem key={page}>
                 <PaginationLink
-                  href="#"
                   isActive={page === currentPage}
                   onClick={(e) => {
                     e.preventDefault();
@@ -88,7 +85,6 @@ export function PaginationDemo({ totalPages, meta }: PaginationDemoProps) {
           {/* Next */}
           <PaginationItem>
             <PaginationNext
-              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 if (currentPage < totalPages) handlePageChange(currentPage + 1);

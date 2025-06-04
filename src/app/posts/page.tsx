@@ -2,7 +2,7 @@
 import Button from "@/components/(custom)/Button";
 import { PaginationDemo } from "@/components/(custom)/paginate";
 import RealTimeSearchInput from "@/components/(custom)/search-input";
-import { fetcher } from "@/lib/action/fetcher";
+import { fetcher } from "@/lib/actions/fetcher";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

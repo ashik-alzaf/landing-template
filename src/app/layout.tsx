@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import LandingLayout from "./context";
 import Providers from "./progressbar";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <Providers>
           <LandingLayout>{children}</LandingLayout>
+          <Toaster />
         </Providers>
       </body>
     </html>

@@ -55,6 +55,7 @@ export function PaginationDemo({ totalPages, meta }: PaginationDemoProps) {
           {/* Previous */}
           <PaginationItem>
             <PaginationPrevious
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 if (currentPage > 1) handlePageChange(currentPage - 1);
@@ -65,10 +66,16 @@ export function PaginationDemo({ totalPages, meta }: PaginationDemoProps) {
           {/* Page Numbers */}
           {[...Array(totalPages)].map((_, i) => {
             const page = i + 1;
+            const isActive = page === currentPage;
+
             return (
               <PaginationItem key={page}>
                 <PaginationLink
-                  isActive={page === currentPage}
+                  className={`${
+                    isActive && "bg-red-500 text-white"
+                  } hover:bg-red-500 hover:text-white`}
+                  isActive={isActive}
+                  href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     handlePageChange(page);
@@ -85,6 +92,7 @@ export function PaginationDemo({ totalPages, meta }: PaginationDemoProps) {
           {/* Next */}
           <PaginationItem>
             <PaginationNext
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 if (currentPage < totalPages) handlePageChange(currentPage + 1);

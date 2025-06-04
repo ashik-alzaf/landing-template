@@ -11,7 +11,6 @@ interface MenuType {
 const Navber = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const isRegistration = pathname.includes("sing-up");
   const data: MenuType[] = [
     {
       title: "Home",
@@ -55,36 +54,34 @@ const Navber = () => {
   };
   return (
     <div>
-      {!isRegistration && (
-        <div
-          ref={scrollRef}
-          onScroll={onScroll}
-          className={`w-full bg-white transition-all z-50 duration-300 ${
-            isSticky >= 100 ? "fixed top-0   shadow" : ""
-          }`}
-        >
-          <div className="flex items-center justify-between py-3 px-5">
-            <Link href={"/"} className="text-3xl font-bold text-teal-600">
-              Amazon
-            </Link>
-            <ul className="flex gap-7">
-              {data?.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.path}
-                    className={`nav ${
-                      pathname === item.path && "text-teal-500 active"
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Button onClick={() => router.push("/sing-up")}>Sing Up</Button>
-          </div>
+      <div
+        ref={scrollRef}
+        onScroll={onScroll}
+        className={`w-full bg-white transition-all z-50 duration-300 ${
+          isSticky >= 100 ? "fixed top-0   shadow" : ""
+        }`}
+      >
+        <div className="flex items-center justify-between py-3 px-5">
+          <Link href={"/"} className="text-3xl font-bold text-teal-600">
+            Amazon
+          </Link>
+          <ul className="flex gap-7">
+            {data?.map((item) => (
+              <li key={item.title}>
+                <Link
+                  href={item.path}
+                  className={`nav ${
+                    pathname === item.path && "text-teal-500 active"
+                  }`}
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Button onClick={() => router.push("/sing-up")}>Sing Up</Button>
         </div>
-      )}
+      </div>
       {/* {isSticky && (
         <button
           onClick={scrollUp}

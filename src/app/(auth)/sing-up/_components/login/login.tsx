@@ -14,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { handleLogin } from "@/lib/actions/auth";
 import { showToast } from "@/components/hook/show-toast";
+import { useRouter } from "next/navigation";
+import { LoaderCircle } from "lucide-react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -25,6 +27,7 @@ const formSchema = z.object({
 });
 
 export default function Login() {
+  const { push } = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,15 +40,12 @@ export default function Login() {
     try {
       const response = await handleLogin(values);
       if (response?.accessToken) {
-        const token = response?.accessToken;
-        document.cookie = `${token}  path=/; secure; HttpOnly; SameSite=Strict; max-age=3600`;
-        window.location.href = "/dashboard";
+        push("/dashboard");
       }
-
-      const status = response.accessToken ? "success" : "failed";
-      const message = response.accessToken
+      const status = response?.accessToken ? "success" : "failed";
+      const message = response?.accessToken
         ? "Login successful"
-        : response.message || "Login failed";
+        : response?.message || "Login failed";
       showToast({ status, message });
     } catch (error: any) {
       showToast({
@@ -94,7 +94,13 @@ export default function Login() {
               )}
             />
             <Button type="submit" className="w-full">
-              Login
+              {form.formState.isSubmitting ? (
+                <span>
+                  <LoaderCircle className="animate-spin" />
+                </span>
+              ) : (
+                <span>Login</span>
+              )}
             </Button>
           </form>
         </Form>

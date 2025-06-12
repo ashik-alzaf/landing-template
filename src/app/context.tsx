@@ -5,7 +5,8 @@ import React from "react";
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  const isLogin = pathname.includes("sing-up") || pathname.includes('dashboard');
+  const isLogin =
+    pathname?.includes("sign-up") || pathname?.includes("dashboard");
   return (
     <div>
       {!isLogin && <Navber />}

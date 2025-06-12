@@ -79,7 +79,7 @@ const Navber = () => {
               </li>
             ))}
           </ul>
-          <Button onClick={() => router.push("/sing-up")}>Sing Up</Button>
+          <Button onClick={() => router.push("/sign-up")}>Sing Up</Button>
         </div>
       </div>
       {/* {isSticky && (

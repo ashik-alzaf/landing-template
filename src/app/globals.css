@@ -110,32 +110,31 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-}
 
 .nav {
   position: relative;
+  display: inline-block;
 }
 
 .nav::after {
-  position: absolute;
   content: '';
+  position: absolute;
   left: 0;
-  bottom: -2;
-  width: 0%;
-  background: #14b8a6;
+  bottom: -2px;
+  width: 100%;
   height: 2px;
-  transition: width 0.5s;
+  background-color: #14b8a6;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
 }
 
 .nav:hover::after,
-.nav.active:after {
-  width: 100%;
+.nav.active::after {
+  transform: scaleX(1);
+}
+
+.nav:not(:hover):not(.active)::after {
+  transform-origin: right;
 }

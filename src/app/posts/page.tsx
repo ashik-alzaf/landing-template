@@ -47,13 +47,14 @@ const page = async ({ searchParams }: any) => {
           <Image src={"/images/error.jpg"} alt="" width={300} height={300} />
         </div>
       )}
+      
       <div className="my-10">
         <PaginationDemo
-          totalPages={5}
           meta={{
             from: 1,
             to: 10,
-            total_items: 100,
+            total_items: 200,
+            per_page: 10,
           }}
         />
       </div>
@@ -62,15 +63,3 @@ const page = async ({ searchParams }: any) => {
 };
 
 export default page;
-
-// import React from 'react';
-
-// const page = () => {
-//   return (
-//     <div>
-
-//     </div>
-//   );
-// };
-
-// export default page;

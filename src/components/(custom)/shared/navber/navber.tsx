@@ -9,6 +9,7 @@ interface MenuType {
   path: string;
 }
 const Navber = () => {
+
   const pathname = usePathname();
   const router = useRouter();
   const data: MenuType[] = [
@@ -52,6 +53,7 @@ const Navber = () => {
   const scrollUp = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
     <div>
       <div

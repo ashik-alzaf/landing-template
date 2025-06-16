@@ -24,3 +24,4 @@
 // ESLint
 // CSS Navigation
 // Error Lens
+// Color Highlight

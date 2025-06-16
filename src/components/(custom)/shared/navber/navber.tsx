@@ -33,6 +33,10 @@ const Navber = () => {
       title: "Posts",
       path: "/posts",
     },
+    {
+      title: "Comments",
+      path: "/comments",
+    },
   ];
   const [isSticky, setIsSticky] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement | null>(null);

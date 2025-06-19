@@ -56,7 +56,7 @@ const VirtualizedList = ({ height = 760, itemHeight = 120 }: any) => {
               right: 0,
               width: "100%",
             }}
-            className="border border-red-500 rounded-md p-5 space-y-3 "
+            className="border border-red-500 rounded-md p-5 space-y-3"
           >
             <p>{item?.name}</p>
             <p>{item?.email}</p>

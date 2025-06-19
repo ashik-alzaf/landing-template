@@ -2,8 +2,10 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
-      <div></div>
+    <div className="flex justify-center h-screen items-center">
+      <div className="circle">
+        <div className="border-circle"></div>
+      </div>
     </div>
   );
 };

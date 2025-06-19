@@ -62,7 +62,7 @@ export default function Login() {
 
   return (
     <div className="w-[20%] mx-auto h-screen flex flex-col justify-center ">
-      <div className="space-y-5 shadow-2xl border-[0.5px] p-8 rounded-lg">
+      <div className="space-y-5 shadow-2xl border-[0.5px] border-gray-200 p-8 rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <FormField
@@ -104,7 +104,7 @@ export default function Login() {
             </Button>
           </form>
         </Form>
-        <div className="flex items-center justify-between border px-2.5 py-1 h-11 rounded text-xs">
+        <div className="flex items-center justify-between border border-gray-300 px-2.5 py-1 h-11 rounded text-xs">
           <span>emilys</span>
           <div className="h-11 w-[0.5px] bg-gray-200" />
           <span>emilyspass</span>
